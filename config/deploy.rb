@@ -11,14 +11,14 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets bundle public/system
 set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 set :keep_releases, 5
 
-# after 'deploy:publishing', 'deploy:restart'
-# namespace :deploy do
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
 
-#   desc 'Restart application'
-#   task :restart do
-#     invoke 'unicorn:restart'
-#   end
-# end
+  desc 'Restart application'
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
 
 # # config valid only for Capistrano 3.1
 # lock '3.2.1'
