@@ -1,9 +1,9 @@
 ---
 - hosts: ocean
   roles:
-  # - common
+  - common
   - nginx
-  # - ruby
+  - ruby
   - nginx-unicorn-app
   tasks:
   - name: install memcached

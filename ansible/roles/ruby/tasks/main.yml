@@ -1,6 +1,14 @@
 ---
-- name: install ruby
-  yum: name=ruby state=present
+- yum: name={{item}} state=latest
+  with_items:
+    - wget
+    - gcc
+    - gcc-c++
+    - make
+    - openssl-devel
+    - zlib-devel
+    - readline-devel
+    - sqlite-devel
 
 - name: check out rbenv
   git: repo={{ rbenv.repo }} dest=~/.rbenv accept_hostkey=yes
