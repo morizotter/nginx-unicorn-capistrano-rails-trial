@@ -1,6 +1,6 @@
 ---
 server: unix:/tmp/unicorn.sock
 server_name: 128.199.95.79
-root: /var/www/app/public
-root_assets: /var/www/app/shared/public
-root_500: /var/www/app/public
+root: /var/www/app/current/public
+root_assets: /var/www/app/current/shared/public
+root_500: /var/www/app/current/public
