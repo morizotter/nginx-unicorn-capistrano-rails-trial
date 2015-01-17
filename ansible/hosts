@@ -1,5 +1,5 @@
 [ocean]
-xxx.xxx.xxx.xxx
+128.199.95.79
 
 [ocean:vars]
 ansible_ssh_user=root

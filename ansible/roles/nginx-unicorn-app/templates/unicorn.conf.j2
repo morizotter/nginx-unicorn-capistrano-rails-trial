@@ -1,0 +1,34 @@
+upstream unicorn_server {
+    server {{ server }};
+}
+
+server {
+    listen 80;
+    client_max_body_size 4G;
+    server_name {{ server_name }};
+
+    keepalive_timeout 5;
+
+    # Location of static files
+    root {{ root }};
+
+    location ~ ^/assets/ {
+        root {{ root_assets }};
+    }
+
+    location / {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+
+        if (!-f $request_filename) {
+            proxy_pass http://unicorn_server;
+            break;
+        }
+    }
+
+    error_page 500 502 503 504 /500.html;
+    location = /500.html {
+        root {{ root_500 }};
+    }
+}
